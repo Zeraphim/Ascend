@@ -9,6 +9,8 @@ import { faSpotify } from '@fortawesome/free-brands-svg-icons';
 function Pomodoro({ Tasks, setTasks }) {
   const [input, setInput] = useState("");
   const [actionText, setActionText] = useState("S T A R T");
+  const [userName, setUserName] = useState("");
+  const [birthDate, setBirthDate] = useState("");
 
   // Timer related states
   const [time, setTime] = useState([25, 0]);
@@ -121,7 +123,7 @@ function Pomodoro({ Tasks, setTasks }) {
               value={input} 
               onChange={handleInput} 
               className="mt-4 p-2 border-2 rounded-md bg-black bg-opacity-20 border-none placeholder-white text-white" 
-              placeholder="Add task" 
+              placeholder="Tasks" 
             />
             <button type="submit" className="mt-4 p-2 bg-teal-400 text-white rounded-md bg-opacity-40">Add Task</button>
           </form>
@@ -132,7 +134,7 @@ function Pomodoro({ Tasks, setTasks }) {
         <div className={`absolute bottom-0 left-0 m-5`}>
           <iframe 
             style={{borderRadius: '12px'}}
-            src="https://open.spotify.com/embed/playlist/3QyOSSW8qvsgtr81FsTry1?utm_source=generator&theme=0" 
+            src="https://open.spotify.com/embed/playlist/5BMAJTcKjLCqitIgR1X0AT?utm_source=generator&theme=0" 
             width="100%" 
             height="152" 
             allowFullScreen="" 
@@ -160,7 +162,6 @@ function Pomodoro({ Tasks, setTasks }) {
             ))}
           </ul>
         </div>
-
 
       </div>
     </div>

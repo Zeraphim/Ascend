@@ -5,6 +5,7 @@ import Template from "./components/Template";
 import Home from "./components/Home";
 
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import Pomodoro from "./components/Pomodoro";
 
 import Error from "./components/Error";
@@ -23,6 +24,10 @@ function MainComponent() {
   const location = useLocation();
   const [currentPath, setCurrentPath] = useState(location.pathname);
 
+  const [name, setName] = useState("");
+  const [birthdate, setBirthdate] = useState("");
+  const [isModal, setIsModal] = useState(true);
+
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
@@ -32,14 +37,17 @@ function MainComponent() {
   return (
     <>
       <Navbar currentPath={currentPath} />
+      
       <Routes>
         <Route path="/" element={<Template />}>
-          <Route index element={<Home Tasks={tasks} setTasks={setTasks}/>} />
+          <Route index element={<Home Tasks={tasks} setTasks={setTasks} Name={name} setName={setName} Birthdate={birthdate} setBirthdate={setBirthdate} isModal={isModal} setIsModal={setIsModal}/>} />
           <Route path="/pomodoro" element={<Pomodoro Tasks={tasks} setTasks={setTasks}/>} />
           {/* <Route path="/about" element={<About />} /> */}
           <Route path="*" element={<Error />} />
         </Route>
       </Routes>
+
+      <Footer />
     </>
   );
 }

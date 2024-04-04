@@ -18,7 +18,7 @@ function Template() {
   const bgImages = [bgOne, bgTwo, bgThree, bgFour, bgFive, bgSix, bgSeven, bgEight, bgNine];
 
   const [counter, setCounter] = useState(0);
-  const [currentBg, setCurrentBg] = useState(bgOne);
+  // const [currentBg, setCurrentBg] = useState(bgOne);
 
 useEffect(() => {
   const interval = setInterval(() => {
