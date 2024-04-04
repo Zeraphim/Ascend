@@ -3,14 +3,12 @@ import PropTypes from 'prop-types';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRedo } from '@fortawesome/free-solid-svg-icons';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
+// import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { faSpotify } from '@fortawesome/free-brands-svg-icons';
 
 function Pomodoro({ Tasks, setTasks }) {
   const [input, setInput] = useState("");
   const [actionText, setActionText] = useState("S T A R T");
-  const [userName, setUserName] = useState("");
-  const [birthDate, setBirthDate] = useState("");
 
   // Timer related states
   const [time, setTime] = useState([25, 0]);

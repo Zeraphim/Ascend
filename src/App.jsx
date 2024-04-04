@@ -28,7 +28,12 @@ function MainComponent() {
   const [birthdate, setBirthdate] = useState("");
   const [isModal, setIsModal] = useState(true);
 
+  const [time, setTime] = useState('');
+
   const [tasks, setTasks] = useState([]);
+
+  const [greetings, setGreetings] = useState("Good morning, ");
+  const [signText, setSignText] = useState("");
 
   useEffect(() => {
     setCurrentPath(location.pathname);
@@ -40,7 +45,7 @@ function MainComponent() {
       
       <Routes>
         <Route path="/" element={<Template />}>
-          <Route index element={<Home Tasks={tasks} setTasks={setTasks} Name={name} setName={setName} Birthdate={birthdate} setBirthdate={setBirthdate} isModal={isModal} setIsModal={setIsModal}/>} />
+          <Route index element={<Home Tasks={tasks} setTasks={setTasks} Name={name} setName={setName} Birthdate={birthdate} setBirthdate={setBirthdate} isModal={isModal} setIsModal={setIsModal} time={time} setTime={setTime} greetings={greetings} setGreetings={setGreetings} signText={signText} setSignText={setSignText}/>} />
           <Route path="/pomodoro" element={<Pomodoro Tasks={tasks} setTasks={setTasks}/>} />
           {/* <Route path="/about" element={<About />} /> */}
           <Route path="*" element={<Error />} />

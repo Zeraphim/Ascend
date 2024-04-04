@@ -5,14 +5,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRedo } from '@fortawesome/free-solid-svg-icons';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 
-function Home({ Tasks, setTasks, Name, setName, Birthdate, setBirthdate, isModal, setIsModal}) {
+import zodiacMessages from '../data/zodiacMessages.json';
+
+function Home({ Tasks, setTasks, Name, setName, Birthdate, setBirthdate, isModal, setIsModal, time, setTime, greetings, setGreetings, signText, setSignText}) {
   const [actionText, setActionText] = useState("S T A R T");
 
-  // Timer related states
-  const [time, setTime] = useState([25, 0]);
   const [isRunning, setIsRunning] = useState(false);
 
-  const [greetings, setGreetings] = useState("Good morning, ");
   const [modalGreetings, setModalGreetings] = useState("Greetings !!!");
 
 
@@ -68,6 +67,8 @@ function Home({ Tasks, setTasks, Name, setName, Birthdate, setBirthdate, isModal
     setBirthdate(event.target.value);
     const birthdate = new Date(event.target.value);
     const zodiacSign = getZodiacSign(birthdate.getDate(), birthdate.getMonth() + 1);
+    const message = zodiacMessages[zodiacSign];
+    setSignText(message);
     setModalGreetings(`Hey you  ${zodiacSign}`);
   };
 
@@ -78,40 +79,34 @@ function Home({ Tasks, setTasks, Name, setName, Birthdate, setBirthdate, isModal
     // You can save the values here
   };
   useEffect(() => {
-    let interval = null;
+    const interval = setInterval(() => {
+      const now = new Date();
+      const hours = now.getHours().toString().padStart(2, '0');
+      const minutes = now.getMinutes().toString().padStart(2, '0');
+      // const seconds = now.getSeconds().toString().padStart(2, '0');
+      setTime(`${hours}:${minutes}`);
 
-    if (isRunning) {
-      interval = setInterval(() => {
-        setTime((prevTime) => {
-          const newTime = [...prevTime];
-          if (newTime[1] === 0 && newTime[0] !== 0) {
-            newTime[0] -= 1;
-            newTime[1] = 59;
-          } else {
-            newTime[1] -= 1;
-          }
+      if (hours < 12) {
+        setGreetings('Good morning, ');
+      } else if (hours < 17) {
+        setGreetings('Good afternoon, ');
+      } else {
+        setGreetings('Good evening, ');
+      }
+    }, 1000);
 
-          if (newTime[0] === 0 && newTime[1] === 0) {
-            setIsRunning(false);
-            alert("Pomodoro finished");
-          }
-
-          return newTime;
-        });
-      }, 1000);
-    } else if (!isRunning && time !== 0) {
-      clearInterval(interval);
-    }
-
-    return () => clearInterval(interval);
-  }, [isRunning, time]);
+    return () => clearInterval(interval); // Clear the interval when the component unmounts
+  }, []);
 
   return (
     <div className="flex flex-col justify-center items-center min-h-screen z-50">
 
       <div>
+        <div className="absolute bottom-0 left-0 m-5 h-[20vh] w-[20vw] flex flex-row justify-center items-center text-white text-[10px] font-light drop-shadow-lg z-50 select-none overflow-auto whitespace-normal">
+            {signText}
+        </div>
         <div className="text-white text-[100px] font-bold z-50 select-none drop-shadow-lg">
-            MM:SS
+            {time}
         </div>
         <div className="text-white text-[25px] drop-shadow-lg z-50 select-none">
             {greetings} {Name}
@@ -207,6 +202,12 @@ Home.propTypes = {
   setBirthdate: PropTypes.func.isRequired,
   isModal: PropTypes.bool.isRequired,
   setIsModal: PropTypes.func.isRequired,
+  time: PropTypes.string.isRequired,
+  setTime: PropTypes.func.isRequired,
+  greetings: PropTypes.string.isRequired,
+  setGreetings: PropTypes.func.isRequired,
+  signText: PropTypes.string.isRequired,
+  setSignText: PropTypes.func.isRequired,
 };
 
 export default Home

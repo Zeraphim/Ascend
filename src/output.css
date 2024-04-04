@@ -654,6 +654,14 @@ video {
   height: 100vh;
 }
 
+.h-\[10vh\] {
+  height: 10vh;
+}
+
+.h-\[20vh\] {
+  height: 20vh;
+}
+
 .min-h-screen {
   min-height: 100vh;
 }
@@ -754,8 +762,16 @@ video {
   gap: 1.75rem;
 }
 
+.overflow-auto {
+  overflow: auto;
+}
+
 .overflow-hidden {
   overflow: hidden;
+}
+
+.whitespace-normal {
+  white-space: normal;
 }
 
 .rounded-md {
@@ -1022,6 +1038,18 @@ video {
 
 .text-\[13px\] {
   font-size: 13px;
+}
+
+.text-\[5px\] {
+  font-size: 5px;
+}
+
+.text-\[23px\] {
+  font-size: 23px;
+}
+
+.text-\[120px\] {
+  font-size: 120px;
 }
 
 .font-bold {

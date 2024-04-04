@@ -14,12 +14,14 @@ function Navbar({ currentPath }) {
   function homeActiveIconStyle() {
     setHomeIconStyle("text-gray-200");
     setPomodoroIconStyle("text-white")
+    console.log(currentPath);
   }
 
 
   function pomodoroActiveIconStyle() {
     setPomodoroIconStyle("text-gray-200");
     setHomeIconStyle("text-white");
+    console.log(currentPath);
   }
 
 
