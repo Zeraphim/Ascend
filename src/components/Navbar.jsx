@@ -1,17 +1,39 @@
 import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
 
+import { useState } from "react";
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHome, faClock } from '@fortawesome/free-solid-svg-icons';
+
 function Navbar({ currentPath }) {
+
+  const [homeIconStyle, setHomeIconStyle] = useState("text-white");
+  const [pomodoroIconStyle, setPomodoroIconStyle] = useState("text-white");
+
+  function homeActiveIconStyle() {
+    setHomeIconStyle("text-gray-200");
+    setPomodoroIconStyle("text-white")
+  }
+
+
+  function pomodoroActiveIconStyle() {
+    setPomodoroIconStyle("text-gray-200");
+    setHomeIconStyle("text-white");
+  }
+
+
+
   return (
     <>
     
       <nav className="flex flex-col justify-start items-start h-full fixed left-0 z-50">
-        <ul className="flex flex-col items-center justify-center">
-          <li>
-            <Link to="/">Home</Link>
+        <ul className="flex flex-col items-center justify-center gap-1">
+          <li className="mt-5 ml-5 scale-125 drop-shadow-lg transition transform hover:scale-150">
+            <Link to="/" title="Home"><FontAwesomeIcon icon={faHome} className={`${homeIconStyle}`} onClick={homeActiveIconStyle}/></Link>
           </li>
-          <li>
-            <Link to="/pomodoro">Pomodoro</Link>
+          <li className="mt-5 ml-5 scale-125 drop-shadow-lg transition transform hover:scale-150">
+            <Link to="/pomodoro" title="Pomodoro" className={`${pomodoroIconStyle}`} onClick={pomodoroActiveIconStyle}><FontAwesomeIcon icon={faClock} /></Link>
           </li>
           {/* <li>
             <Link to="/about">About</Link>

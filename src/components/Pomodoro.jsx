@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRedo } from '@fortawesome/free-solid-svg-icons';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faSpotify } from '@fortawesome/free-brands-svg-icons';
 
 function Pomodoro({ Tasks, setTasks }) {
   const [input, setInput] = useState("");
@@ -12,6 +13,7 @@ function Pomodoro({ Tasks, setTasks }) {
   // Timer related states
   const [time, setTime] = useState([25, 0]);
   const [isRunning, setIsRunning] = useState(false);
+  const [isSpotify, setIsSpotify] = useState(false);
 
   const handleClick = () => {
     if (actionText === "S T A R T") {
@@ -27,6 +29,14 @@ function Pomodoro({ Tasks, setTasks }) {
     setTime([25, 0]);
     setIsRunning(false);
     setActionText("S T A R T");
+  }
+
+  const handleSpotify = () => {
+    if(isSpotify) {
+      setIsSpotify(false);
+    } else {
+      setIsSpotify(true);
+    }
   }
 
   const handleInput = (event) => {
@@ -69,11 +79,14 @@ function Pomodoro({ Tasks, setTasks }) {
   }, [isRunning, time]);
 
   return (
-    <div className="flex flex-col justify-center items-center min-h-screen bg-yellow-300">
+    <div className="flex flex-col justify-center items-center min-h-screen z-50">
 
-      <div className="flex flex-col justify-center items-center h-[50vh] w-[30vw] bg-red-300 relative">
+      <div className="flex flex-col justify-center items-center h-[50vh] w-[50vh] relative rounded-full backdrop-blur-sm bg-black backdrop-filter overflow-hidden bg-opacity-15 border-4 border-opacity-10 border-white">
+
+            <div className="text-[16px] font-bold text-white drop-shadow-lg transition transform hover:scale-110 select-none">
+                P O M O D O R O
+            </div>
             
-
             <div className="text-[72px] font-bold text-white drop-shadow-lg select-none">
               {time[0]} : {String(time[1]).padStart(2, '0')}
             </div>
@@ -82,7 +95,7 @@ function Pomodoro({ Tasks, setTasks }) {
 
                 {/* Reset Button */}
                 <div>
-                  <FontAwesomeIcon icon={faRedo} className="text-white cursor-pointer transition transform hover:scale-125" onClick={handleReset} />
+                  <FontAwesomeIcon icon={faRedo} className="text-white cursor-pointer transition transform hover:scale-125 hover:text-green-300" onClick={handleReset} />
                 </div>
 
                 {/* Action Text (START or PAUSE) */}
@@ -90,15 +103,15 @@ function Pomodoro({ Tasks, setTasks }) {
                   {actionText}
                 </div>
 
-                {/* Hamburger Menu */}
+                {/* Spotify Menu */}
                 <div>
-                  <FontAwesomeIcon icon={faBars} className="text-white cursor-pointer transition transform hover:scale-125" onClick={handleReset} />
+                  <FontAwesomeIcon icon={faSpotify} className="text-white cursor-pointer transition transform hover:scale-125 hover:text-green-300" onClick={handleSpotify} />
                 </div>
 
             </div>
       </div>  
 
-      <div className="flex flex-col items-center justify-center">
+      <div className="flex flex-col items-center justify-center z-50">
 
         {/* Tasks Submission Form */}
         <div>
@@ -107,18 +120,43 @@ function Pomodoro({ Tasks, setTasks }) {
               type="text" 
               value={input} 
               onChange={handleInput} 
-              className="mt-4 p-2 border-2 border-gray-300 rounded-md" 
+              className="mt-4 p-2 border-2 rounded-md bg-black bg-opacity-20 border-none placeholder-white text-white" 
               placeholder="Add task" 
             />
-            <button type="submit" className="mt-4 p-2 bg-teal-400 text-white rounded-md">Add Task</button>
+            <button type="submit" className="mt-4 p-2 bg-teal-400 text-white rounded-md bg-opacity-40">Add Task</button>
           </form>
         </div>
 
+      {/* Spotify */}
+      {isSpotify && (
+        <div className={`absolute bottom-0 left-0 m-5`}>
+          <iframe 
+            style={{borderRadius: '12px'}}
+            src="https://open.spotify.com/embed/playlist/3QyOSSW8qvsgtr81FsTry1?utm_source=generator&theme=0" 
+            width="100%" 
+            height="152" 
+            allowFullScreen="" 
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+            loading="lazy"
+          >
+          </iframe>
+        </div>
+      )}
+      
         {/* Tasks */}
         <div>
-          <ul className="flex flex-col justify-center items-center gap-3">
+          <ul className="absolute top-0 right-0 m-4 flex flex-col justify-center items-center gap-3">
             {Tasks.map((task, index) => (
-              <li key={index} className="h-[7vh] w-[30vw] flex flex-row justify-center items-center bg-red-300">{task}</li>
+              <li 
+                key={index} 
+                className="h-[7vh] w-[25vw] select-none text-white flex flex-row justify-center items-center backdrop-filter backdrop-blur-sm bg-opacity-55 rounded-xl overflow-hidden bg-teal-400 transition transform hover:scale-105 hover:bg-cyan-300 hover:backdrop-blur-sm hover:bg-opacity-55 "
+                onClick={() => {
+                  const newTasks = Tasks.filter((_, taskIndex) => taskIndex !== index);
+                  setTasks(newTasks);
+                }}
+              >
+                {task}
+              </li>
             ))}
           </ul>
         </div>
