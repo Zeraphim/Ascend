@@ -7,6 +7,10 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 import zodiacMessages from '../data/zodiacMessages.json';
 
+// TODO
+// AOS
+// https://www.npmjs.com/package/aos
+
 function Home({ Tasks, setTasks, Name, setName, Birthdate, setBirthdate, isModal, setIsModal, time, setTime, greetings, setGreetings, signText, setSignText}) {
   const [actionText, setActionText] = useState("S T A R T");
 
