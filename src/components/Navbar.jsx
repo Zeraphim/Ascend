@@ -12,14 +12,14 @@ function Navbar({ currentPath }) {
   const [pomodoroIconStyle, setPomodoroIconStyle] = useState("text-white");
 
   function homeActiveIconStyle() {
-    setHomeIconStyle("text-gray-200");
+    setHomeIconStyle("text-teal-300");
     setPomodoroIconStyle("text-white")
     console.log(currentPath);
   }
 
 
   function pomodoroActiveIconStyle() {
-    setPomodoroIconStyle("text-gray-200");
+    setPomodoroIconStyle("text-teal-300");
     setHomeIconStyle("text-white");
     console.log(currentPath);
   }

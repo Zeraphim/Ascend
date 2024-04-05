@@ -13,7 +13,7 @@ function Pomodoro({ Tasks, setTasks }) {
   // Timer related states
   const [time, setTime] = useState([25, 0]);
   const [isRunning, setIsRunning] = useState(false);
-  const [isSpotify, setIsSpotify] = useState(false);
+  const [isSpotify, setIsSpotify] = useState("hidden");
 
   const handleClick = () => {
     if (actionText === "S T A R T") {
@@ -32,10 +32,10 @@ function Pomodoro({ Tasks, setTasks }) {
   }
 
   const handleSpotify = () => {
-    if(isSpotify) {
-      setIsSpotify(false);
+    if(isSpotify === "") {
+      setIsSpotify("hidden");
     } else {
-      setIsSpotify(true);
+      setIsSpotify("");
     }
   }
 
@@ -128,8 +128,7 @@ function Pomodoro({ Tasks, setTasks }) {
         </div>
 
       {/* Spotify */}
-      {isSpotify && (
-        <div className={`absolute bottom-0 left-0 m-5`}>
+        <div className={`absolute bottom-0 left-0 m-5 animate-fade-left ${isSpotify}`}>
           <iframe 
             style={{borderRadius: '12px'}}
             src="https://open.spotify.com/embed/playlist/5BMAJTcKjLCqitIgR1X0AT?utm_source=generator&theme=0" 
@@ -141,7 +140,6 @@ function Pomodoro({ Tasks, setTasks }) {
           >
           </iframe>
         </div>
-      )}
       
         {/* Tasks */}
         <div>

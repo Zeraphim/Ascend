@@ -87,8 +87,9 @@ function Home({ Tasks, setTasks, Name, setName, Birthdate, setBirthdate, isModal
       const now = new Date();
       const hours = now.getHours().toString().padStart(2, '0');
       const minutes = now.getMinutes().toString().padStart(2, '0');
-      // const seconds = now.getSeconds().toString().padStart(2, '0');
-      setTime(`${hours}:${minutes}`);
+      const seconds = now.getSeconds().toString().padStart(2, '0');
+      setTime(`${hours}:${minutes}:${seconds}`);
+      // setTime(`${hours}:${minutes}`);
 
       if (hours < 12) {
         setGreetings('Good morning, ');
@@ -111,15 +112,15 @@ function Home({ Tasks, setTasks, Name, setName, Birthdate, setBirthdate, isModal
           <div>
 
 
-              <div className="text-white sm:text-[100px] text-[80px] font-bold z-50 select-none drop-shadow-lg animate-fade-up-2s">
+              <div className="w-[50vw] text-white sm:text-[100px] text-[60px] flex flex-row justify-center items-center font-bold z-50 select-none drop-shadow-lg animate-fade-up-2s">
                   {time}
               </div>
-              <div className="text-white sm:text-[25px] text-[17px] drop-shadow-lg z-50 select-none animate-fade-up-2s">
+              <div className="w-[50vw] text-white sm:text-[25px] text-[17px] flex flex-row justify-center items-center drop-shadow-lg z-50 select-none animate-fade-up-2s">
                   {greetings} {Name}
               </div>
+ 
 
-
-              <div className="lg:absolute lg:bottom-0 lg:left-0 m-5 lg:h-[20vh] lg:w-[20vw] h-[20vh] w-[30vw] flex flex-row justify-center items-center text-white sm:text-[10px] text-[10px] lg:text-left text-justify font-light drop-shadow-lg z-50 select-none lg:overflow-auto whitespace-normal animate-fade-up-2s">
+              <div className="lg:absolute lg:bottom-0 lg:left-0 m-5 lg:h-[20vh] lg:w-[20vw] h-[20vh] w-[50vw] flex flex-row justify-center items-center text-white sm:text-[10px] text-[10px] lg:text-left text-justify font-light drop-shadow-lg z-50 select-none lg:overflow-auto whitespace-normal animate-fade-up-2s">
                   {signText}
               </div>
 
@@ -133,7 +134,7 @@ function Home({ Tasks, setTasks, Name, setName, Birthdate, setBirthdate, isModal
               {Tasks.map((task, index) => (
                 <li 
                   key={index} 
-                  className="h-[7vh] w-[25vw] select-none text-white flex flex-row justify-center items-center backdrop-filter backdrop-blur-sm bg-opacity-55 rounded-xl overflow-hidden bg-teal-400 transition transform hover:scale-105 hover:bg-cyan-300 hover:backdrop-blur-sm hover:bg-opacity-55 animate-fade-down"
+                  className="z-50 lg:h-[7vh] lg:w-[25vw] w-[50vw] h-[5vw] select-none text-white flex flex-row justify-center items-center backdrop-filter backdrop-blur-sm bg-opacity-55 rounded-xl overflow-hidden bg-teal-400 transition transform hover:scale-105 hover:bg-cyan-300 hover:backdrop-blur-sm hover:bg-opacity-55 animate-fade-down"
                   onClick={() => {
                     const newTasks = Tasks.filter((_, taskIndex) => taskIndex !== index);
                     setTasks(newTasks);
