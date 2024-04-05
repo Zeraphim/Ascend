@@ -138,7 +138,7 @@ function Home({ Tasks, setTasks, Name, setName, Birthdate, setBirthdate, isModal
           <div className="absolute lg:h-[35vh] lg:w-[45vh] h-[85vw] w-[85vw] flex flex-col justify-center items-center z-500 rounded-3xl backdrop-blur-3xl bg-white backdrop-filter overflow-hidden bg-opacity-30 drop-shadow-lg text-white animate-fade-up">
 
             <div>
-              <form onSubmit={handleSubmit} className="flex flex-col items-center gap-7 pb-6">
+              <form onSubmit={handleSubmit} className="flex flex-col items-center gap-7">
 
                 <div className="text-[20px] font-bold drop-shadow-lg animate-fade-up select-none"> 
                   {modalGreetings}
