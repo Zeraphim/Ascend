@@ -15,6 +15,35 @@ export default {
       },
       boxShadow: {
         'inset': 'inset 0 0 100px 100px rgba(0, 0, 0, 0.5)',
+      },
+      animation: {
+        'fade-up': 'fade-up 1s',
+        'fade-up-2s': 'fade-up-2s 2s',
+        'fade-left': 'fade-left 1s',
+        'fade-right': 'fade-right 1s',
+        'fade-down': 'fade-down 1s',
+      },
+      keyframes: {
+        'fade-up': {
+          '0%': { transform: 'translateY(20px)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' }
+        },
+        'fade-up-2s': { // new keyframes
+          '0%': { transform: 'translateY(20px)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' }
+        },
+        'fade-left': { // new keyframes
+          '0%': { transform: 'translateX(20px)', opacity: '0' },
+          '100%': { transform: 'translateX(0)', opacity: '1' }
+        },
+        'fade-right': { // new keyframes
+          '0%': { transform: 'translateX(-20px)', opacity: '0' },
+          '100%': { transform: 'translateX(0)', opacity: '1' }
+        },
+        'fade-down': {
+          '0%': { transform: 'translateY(-20px)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' }
+        },
       }
     },
   },

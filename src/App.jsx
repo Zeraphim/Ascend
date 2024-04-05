@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
+
 import Template from "./components/Template";
 import Home from "./components/Home";
 

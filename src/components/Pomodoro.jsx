@@ -81,17 +81,17 @@ function Pomodoro({ Tasks, setTasks }) {
   return (
     <div className="flex flex-col justify-center items-center min-h-screen z-50">
 
-      <div className="flex flex-col justify-center items-center h-[50vh] w-[50vh] relative rounded-full backdrop-blur-sm bg-black backdrop-filter overflow-hidden bg-opacity-15 border-4 border-opacity-10 border-white">
+      <div className="flex flex-col justify-center items-center lg:h-[50vh] lg:w-[50vh] h-[60vw] w-[60vw] relative rounded-full backdrop-blur-sm bg-black backdrop-filter overflow-hidden bg-opacity-15 border-4 border-opacity-10 border-white animate-fade-up">
 
-            <div className="text-[16px] font-bold text-white drop-shadow-lg transition transform hover:scale-110 select-none">
+            <div className="lg:text-[16px] text-[13px] font-bold text-white drop-shadow-lg transition transform hover:scale-110 select-none animate-fade-up-2s">
                 P O M O D O R O
             </div>
             
-            <div className="text-[72px] font-bold text-white drop-shadow-lg select-none">
+            <div className="lg:text-[72px] text-[50px] font-bold text-white drop-shadow-lg select-none animate-fade-up-2s">
               {time[0]} : {String(time[1]).padStart(2, '0')}
             </div>
 
-            <div className="flex flex-row gap-5">
+            <div className="flex flex-row gap-5 animate-fade-up-2s">
 
                 {/* Reset Button */}
                 <div>
@@ -120,10 +120,10 @@ function Pomodoro({ Tasks, setTasks }) {
               type="text" 
               value={input} 
               onChange={handleInput} 
-              className="mt-4 p-2 border-2 rounded-md bg-black bg-opacity-20 border-none placeholder-white text-white" 
+              className="mt-4 p-2 border-2 rounded-md bg-black bg-opacity-20 border-none placeholder-white text-white animate-fade-up-2s" 
               placeholder="Tasks" 
             />
-            <button type="submit" className="mt-4 p-2 bg-teal-400 text-white rounded-md bg-opacity-40">Add Task</button>
+            <button type="submit" className="mt-4 p-2 bg-teal-400 text-white rounded-md bg-opacity-40 animate-fade-up-2s">Add Task</button>
           </form>
         </div>
 
@@ -145,11 +145,11 @@ function Pomodoro({ Tasks, setTasks }) {
       
         {/* Tasks */}
         <div>
-          <ul className="absolute top-0 right-0 m-4 flex flex-col justify-center items-center gap-3">
+          <ul className="lg:absolute lg:top-0 lg:right-0 m-4 flex flex-col justify-center items-center gap-3 z-55">
             {Tasks.map((task, index) => (
               <li 
                 key={index} 
-                className="h-[7vh] w-[25vw] select-none text-white flex flex-row justify-center items-center backdrop-filter backdrop-blur-lg bg-opacity-40 rounded-xl overflow-hidden bg-teal-400 transition transform hover:scale-105 hover:bg-cyan-300 hover:backdrop-blur-sm hover:bg-opacity-55 "
+                className="z-50 lg:h-[7vh] lg:w-[25vw] w-[50vw] h-[5vw] select-none text-white flex flex-row justify-center items-center backdrop-filter backdrop-blur-sm bg-opacity-55 rounded-xl overflow-hidden bg-teal-400 transition transform hover:scale-105 hover:bg-cyan-300 hover:backdrop-blur-sm hover:bg-opacity-55 animate-fade-down"
                 onClick={() => {
                   const newTasks = Tasks.filter((_, taskIndex) => taskIndex !== index);
                   setTasks(newTasks);

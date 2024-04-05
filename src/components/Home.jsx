@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react"
 import PropTypes from 'prop-types';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faRedo } from '@fortawesome/free-solid-svg-icons';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+
 import zodiacMessages from '../data/zodiacMessages.json';
 
 // TODO
@@ -8,8 +12,28 @@ import zodiacMessages from '../data/zodiacMessages.json';
 // https://www.npmjs.com/package/aos
 
 function Home({ Tasks, setTasks, Name, setName, Birthdate, setBirthdate, isModal, setIsModal, time, setTime, greetings, setGreetings, signText, setSignText}) {
+  const [actionText, setActionText] = useState("S T A R T");
+
+  const [isRunning, setIsRunning] = useState(false);
 
   const [modalGreetings, setModalGreetings] = useState("Greetings !!!");
+
+
+  const handleClick = () => {
+    if (actionText === "S T A R T") {
+      setActionText("P A U S E");
+      setIsRunning(true);
+    } else {
+      setActionText("S T A R T");
+      setIsRunning(false);
+    }
+  };
+
+  const handleReset = () => {
+    setTime([25, 0]);
+    setIsRunning(false);
+    setActionText("S T A R T");
+  }
 
   const handleNameChange = (event) => {
     setName(event.target.value);
@@ -82,20 +106,34 @@ function Home({ Tasks, setTasks, Name, setName, Birthdate, setBirthdate, isModal
     <div className="flex flex-col justify-center items-center min-h-screen z-50">
 
       <div>
-        <div className="text-white text-[100px] font-bold z-50 select-none drop-shadow-lg">
-            {time}
-        </div>
-        <div className="text-white text-[25px] drop-shadow-lg z-50 select-none">
-            {greetings} {Name}
-        </div>
+        {!isModal && (
+
+          <div>
+
+
+              <div className="text-white sm:text-[100px] text-[80px] font-bold z-50 select-none drop-shadow-lg animate-fade-up-2s">
+                  {time}
+              </div>
+              <div className="text-white sm:text-[25px] text-[17px] drop-shadow-lg z-50 select-none animate-fade-up-2s">
+                  {greetings} {Name}
+              </div>
+
+
+              <div className="lg:absolute lg:bottom-0 lg:left-0 m-5 lg:h-[20vh] lg:w-[20vw] h-[20vh] w-[30vw] flex flex-row justify-center items-center text-white sm:text-[10px] text-[10px] lg:text-left text-justify font-light drop-shadow-lg z-50 select-none lg:overflow-auto whitespace-normal animate-fade-up-2s">
+                  {signText}
+              </div>
+
+          </div>
+
+        )}
 
           {/* Tasks */}
           <div>
-            <ul className="absolute top-0 right-0 m-4 flex flex-col justify-center items-center gap-3 z-50">
+            <ul className="lg:absolute lg:top-0 lg:right-0 m-4 flex flex-col justify-center items-center gap-3">
               {Tasks.map((task, index) => (
                 <li 
                   key={index} 
-                  className="h-[7vh] w-[25vw] select-none text-white flex flex-row justify-center items-center backdrop-filter backdrop-blur-lg bg-opacity-40 rounded-xl overflow-hidden bg-teal-400 transition transform hover:scale-105 hover:bg-cyan-300 hover:backdrop-blur-sm hover:bg-opacity-55 "
+                  className="h-[7vh] w-[25vw] select-none text-white flex flex-row justify-center items-center backdrop-filter backdrop-blur-sm bg-opacity-55 rounded-xl overflow-hidden bg-teal-400 transition transform hover:scale-105 hover:bg-cyan-300 hover:backdrop-blur-sm hover:bg-opacity-55 animate-fade-down"
                   onClick={() => {
                     const newTasks = Tasks.filter((_, taskIndex) => taskIndex !== index);
                     setTasks(newTasks);
@@ -111,20 +149,20 @@ function Home({ Tasks, setTasks, Name, setName, Birthdate, setBirthdate, isModal
       {/* Overlay Modal */}
       {isModal && (
 
-      <div className="absolute  h-[100vh] w-[100vw] flex flex-col justify-center items-center backdrop-blur-3xl bg-black backdrop-filter overflow-hidden bg-opacity-15 z-60">
+      <div className="absolute  h-[100vh] w-[100vw] flex flex-col justify-center items-center backdrop-blur-3xl bg-black backdrop-filter overflow-hidden bg-opacity-15">
 
-          <div className="absolute h-[50vh] w-[50vh] flex flex-col justify-center items-center z-500 rounded-3xl backdrop-blur-3xl bg-white backdrop-filter overflow-hidden bg-opacity-20 drop-shadow-lg text-white">
+          <div className="absolute lg:h-[35vh] lg:w-[45vh] h-[85vw] w-[85vw] flex flex-col justify-center items-center z-500 rounded-3xl backdrop-blur-3xl bg-white backdrop-filter overflow-hidden bg-opacity-30 drop-shadow-lg text-white animate-fade-up">
 
             <div>
               <form onSubmit={handleSubmit} className="flex flex-col items-center gap-7 pb-6">
 
-                <div className="text-[20px] font-bold drop-shadow-lg"> 
+                <div className="text-[20px] font-bold drop-shadow-lg animate-fade-up"> 
                   {modalGreetings}
                 </div>
 
                 <div className="flex flex-row justify-center items-center gap-5">
                   
-                  <div className="p-2 text-[15px] font-bold drop-shadow-lg"> 
+                  <div className="p-2 text-[15px] font-bold drop-shadow-lg animate-fade-up"> 
                     Name: 
                   </div>
 
@@ -132,14 +170,14 @@ function Home({ Tasks, setTasks, Name, setName, Birthdate, setBirthdate, isModal
                     type="text" 
                     value={Name} 
                     onChange={handleNameChange} 
-                    className="p-2 border-2 text-[15px] rounded-md bg-black bg-opacity-20 border-none placeholder-white text-white" 
+                    className="p-2 border-2 text-[15px] rounded-md bg-black bg-opacity-20 border-none placeholder-white text-white animate-fade-up" 
                     placeholder="Reanu Keeves" 
                   />
 
                 </div>
 
                 <div className="flex flex-row justify-center items-center gap-5">
-                  <div className="p-2 text-[15px] font-bold drop-shadow-lg"> 
+                  <div className="p-2 text-[15px] font-bold drop-shadow-lg animate-fade-up"> 
                     Birthdate: 
                   </div>
 
@@ -147,13 +185,13 @@ function Home({ Tasks, setTasks, Name, setName, Birthdate, setBirthdate, isModal
                     type="date" 
                     value={Birthdate} 
                     onChange={handleBirthdateChange} 
-                    className="p-2 border-2 rounded-md bg-black bg-opacity-20 border-none placeholder-white text-white" 
+                    className="p-2 border-2 rounded-md bg-black bg-opacity-20 border-none placeholder-white text-white animate-fade-up" 
                     placeholder="Birthdate (MM/DD/YYYY)" 
                   />
 
                 </div>
 
-                <button type="submit" className="p-2 bg-teal-400 text-white rounded-md bg-opacity-50">Submit</button>
+                <button type="submit" className="p-2 bg-teal-400 text-white rounded-md bg-opacity-50 animate-fade-up">Submit</button>
 
               </form>
             </div>
@@ -163,12 +201,6 @@ function Home({ Tasks, setTasks, Name, setName, Birthdate, setBirthdate, isModal
       </div>
 
       )}
-
-    {!isModal && (
-      <div className="absolute bottom-0 left-0 m-5 h-[20vh] w-[20vw] flex flex-row justify-center items-center text-white text-[10px] font-light drop-shadow-lg z-50 select-none overflow-auto whitespace-normal">
-        {signText}
-      </div>
-    )}
 
 
 
