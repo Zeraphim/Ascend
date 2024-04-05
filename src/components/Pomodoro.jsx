@@ -149,7 +149,7 @@ function Pomodoro({ Tasks, setTasks }) {
             {Tasks.map((task, index) => (
               <li 
                 key={index} 
-                className="h-[7vh] w-[25vw] select-none text-white flex flex-row justify-center items-center backdrop-filter backdrop-blur-sm bg-opacity-55 rounded-xl overflow-hidden bg-teal-400 transition transform hover:scale-105 hover:bg-cyan-300 hover:backdrop-blur-sm hover:bg-opacity-55 "
+                className="h-[7vh] w-[25vw] select-none text-white flex flex-row justify-center items-center backdrop-filter backdrop-blur-lg bg-opacity-40 rounded-xl overflow-hidden bg-teal-400 transition transform hover:scale-105 hover:bg-cyan-300 hover:backdrop-blur-sm hover:bg-opacity-55 "
                 onClick={() => {
                   const newTasks = Tasks.filter((_, taskIndex) => taskIndex !== index);
                   setTasks(newTasks);

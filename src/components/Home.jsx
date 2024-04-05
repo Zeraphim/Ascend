@@ -1,10 +1,6 @@
 import { useState, useEffect } from "react"
 import PropTypes from 'prop-types';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faRedo } from '@fortawesome/free-solid-svg-icons';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
-
 import zodiacMessages from '../data/zodiacMessages.json';
 
 // TODO
@@ -12,28 +8,8 @@ import zodiacMessages from '../data/zodiacMessages.json';
 // https://www.npmjs.com/package/aos
 
 function Home({ Tasks, setTasks, Name, setName, Birthdate, setBirthdate, isModal, setIsModal, time, setTime, greetings, setGreetings, signText, setSignText}) {
-  const [actionText, setActionText] = useState("S T A R T");
-
-  const [isRunning, setIsRunning] = useState(false);
 
   const [modalGreetings, setModalGreetings] = useState("Greetings !!!");
-
-
-  const handleClick = () => {
-    if (actionText === "S T A R T") {
-      setActionText("P A U S E");
-      setIsRunning(true);
-    } else {
-      setActionText("S T A R T");
-      setIsRunning(false);
-    }
-  };
-
-  const handleReset = () => {
-    setTime([25, 0]);
-    setIsRunning(false);
-    setActionText("S T A R T");
-  }
 
   const handleNameChange = (event) => {
     setName(event.target.value);
@@ -106,9 +82,6 @@ function Home({ Tasks, setTasks, Name, setName, Birthdate, setBirthdate, isModal
     <div className="flex flex-col justify-center items-center min-h-screen z-50">
 
       <div>
-        <div className="absolute bottom-0 left-0 m-5 h-[20vh] w-[20vw] flex flex-row justify-center items-center text-white text-[10px] font-light drop-shadow-lg z-50 select-none overflow-auto whitespace-normal">
-            {signText}
-        </div>
         <div className="text-white text-[100px] font-bold z-50 select-none drop-shadow-lg">
             {time}
         </div>
@@ -118,11 +91,11 @@ function Home({ Tasks, setTasks, Name, setName, Birthdate, setBirthdate, isModal
 
           {/* Tasks */}
           <div>
-            <ul className="absolute top-0 right-0 m-4 flex flex-col justify-center items-center gap-3">
+            <ul className="absolute top-0 right-0 m-4 flex flex-col justify-center items-center gap-3 z-50">
               {Tasks.map((task, index) => (
                 <li 
                   key={index} 
-                  className="h-[7vh] w-[25vw] select-none text-white flex flex-row justify-center items-center backdrop-filter backdrop-blur-sm bg-opacity-55 rounded-xl overflow-hidden bg-teal-400 transition transform hover:scale-105 hover:bg-cyan-300 hover:backdrop-blur-sm hover:bg-opacity-55 "
+                  className="h-[7vh] w-[25vw] select-none text-white flex flex-row justify-center items-center backdrop-filter backdrop-blur-sm bg-opacity-40 rounded-xl overflow-hidden bg-teal-400 transition transform hover:scale-105 hover:bg-cyan-300 hover:backdrop-blur-sm hover:bg-opacity-55 "
                   onClick={() => {
                     const newTasks = Tasks.filter((_, taskIndex) => taskIndex !== index);
                     setTasks(newTasks);
@@ -138,9 +111,9 @@ function Home({ Tasks, setTasks, Name, setName, Birthdate, setBirthdate, isModal
       {/* Overlay Modal */}
       {isModal && (
 
-      <div className="absolute  h-[100vh] w-[100vw] flex flex-col justify-center items-center backdrop-blur-3xl bg-black backdrop-filter overflow-hidden bg-opacity-15 z-55">
+      <div className="absolute  h-[100vh] w-[100vw] flex flex-col justify-center items-center backdrop-blur-3xl bg-black backdrop-filter overflow-hidden bg-opacity-15 z-60">
 
-          <div className="absolute h-[50vh] w-[50vh] flex flex-col justify-center items-center z-500 rounded-3xl backdrop-blur-3xl bg-white backdrop-filter overflow-hidden bg-opacity-30 drop-shadow-lg text-white">
+          <div className="absolute h-[50vh] w-[50vh] flex flex-col justify-center items-center z-500 rounded-3xl backdrop-blur-3xl bg-white backdrop-filter overflow-hidden bg-opacity-20 drop-shadow-lg text-white">
 
             <div>
               <form onSubmit={handleSubmit} className="flex flex-col items-center gap-7 pb-6">
@@ -190,6 +163,12 @@ function Home({ Tasks, setTasks, Name, setName, Birthdate, setBirthdate, isModal
       </div>
 
       )}
+
+    {!isModal && (
+      <div className="absolute bottom-0 left-0 m-5 h-[20vh] w-[20vw] flex flex-row justify-center items-center text-white text-[10px] font-light drop-shadow-lg z-50 select-none overflow-auto whitespace-normal">
+        {signText}
+      </div>
+    )}
 
 
 
