@@ -37,6 +37,8 @@ function MainComponent() {
 
   const [day, setDay] = useState("Monday");
 
+  const [isSpotify, setIsSpotify] = useState("hidden");
+
   useEffect(() => {
     setCurrentPath(location.pathname);
   }, [location]);
@@ -46,13 +48,28 @@ function MainComponent() {
       <Navbar currentPath={currentPath} />
       
       <Routes>
-        <Route path="/" element={<Template />}>
+        <Route path="/" element={<Template isSpotify={isSpotify} setIsSpotify={setIsSpotify} />}>
           <Route index element={<Home Tasks={tasks} setTasks={setTasks} Name={name} setName={setName} Birthdate={birthdate} setBirthdate={setBirthdate} isModal={isModal} setIsModal={setIsModal} time={time} setTime={setTime} greetings={greetings} setGreetings={setGreetings} signText={signText} setSignText={setSignText} day={day} setDay={setDay} />} />
-          <Route path="/pomodoro" element={<Pomodoro Tasks={tasks} setTasks={setTasks}/>} />
+          <Route path="/pomodoro" element={<Pomodoro Tasks={tasks} setTasks={setTasks} isSpotify={isSpotify} setIsSpotify={setIsSpotify}/>} />
           {/* <Route path="/about" element={<About />} /> */}
           <Route path="*" element={<Error />} />
         </Route>
       </Routes>
+
+      
+        {/* Spotify */}
+        <div className={`absolute lg:bottom-0 lg:left-0 m-5 animate-fade-left lg:w-[25vw] ${isSpotify}`}>
+          <iframe 
+            style={{borderRadius: '12px'}}
+            src="https://open.spotify.com/embed/playlist/5BMAJTcKjLCqitIgR1X0AT?utm_source=generator&theme=0" 
+            width="100%" 
+            height="152" 
+            allowFullScreen="" 
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+            loading="lazy"
+          >
+          </iframe>
+        </div>
 
       <Footer />
     </>

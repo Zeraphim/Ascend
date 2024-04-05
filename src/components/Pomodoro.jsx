@@ -6,14 +6,13 @@ import { faRedo } from '@fortawesome/free-solid-svg-icons';
 // import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { faSpotify } from '@fortawesome/free-brands-svg-icons';
 
-function Pomodoro({ Tasks, setTasks }) {
+function Pomodoro({ Tasks, setTasks, isSpotify, setIsSpotify}) {
   const [input, setInput] = useState("");
   const [actionText, setActionText] = useState("S T A R T");
 
   // Timer related states
   const [time, setTime] = useState([25, 0]);
   const [isRunning, setIsRunning] = useState(false);
-  const [isSpotify, setIsSpotify] = useState("hidden");
 
   const handleClick = () => {
     if (actionText === "S T A R T") {
@@ -34,8 +33,10 @@ function Pomodoro({ Tasks, setTasks }) {
   const handleSpotify = () => {
     if(isSpotify === "") {
       setIsSpotify("hidden");
+      console.log(isSpotify)
     } else {
       setIsSpotify("");
+      console.log(isSpotify)
     }
   }
 
@@ -79,7 +80,7 @@ function Pomodoro({ Tasks, setTasks }) {
   }, [isRunning, time]);
 
   return (
-    <div className="flex flex-col justify-center items-center min-h-screen z-50">
+    <div className="flex flex-col justify-center items-center min-h-screen z-40">
 
       <div className="flex flex-col justify-center items-center lg:h-[50vh] lg:w-[50vh] h-[60vw] w-[60vw] relative rounded-full backdrop-blur-sm bg-black backdrop-filter overflow-hidden bg-opacity-15 border-4 border-opacity-10 border-white animate-fade-up">
 
@@ -127,20 +128,7 @@ function Pomodoro({ Tasks, setTasks }) {
           </form>
         </div>
 
-      {/* Spotify */}
-        <div className={`absolute bottom-0 left-0 m-5 animate-fade-left ${isSpotify}`}>
-          <iframe 
-            style={{borderRadius: '12px'}}
-            src="https://open.spotify.com/embed/playlist/5BMAJTcKjLCqitIgR1X0AT?utm_source=generator&theme=0" 
-            width="100%" 
-            height="152" 
-            allowFullScreen="" 
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-            loading="lazy"
-          >
-          </iframe>
-        </div>
-      
+
         {/* Tasks */}
         <div>
           <ul className="lg:absolute lg:top-0 lg:right-0 m-4 flex flex-col justify-center items-center gap-3 z-55">
@@ -167,6 +155,8 @@ function Pomodoro({ Tasks, setTasks }) {
 Pomodoro.propTypes = {
   Tasks: PropTypes.array.isRequired,
   setTasks: PropTypes.func.isRequired,
+  isSpotify: PropTypes.string.isRequired,
+  setIsSpotify: PropTypes.func.isRequired
 };
 
 export default Pomodoro

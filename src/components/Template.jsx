@@ -2,6 +2,7 @@
 import { Outlet } from "react-router-dom";
 
 import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 import bgOne from '../assets/bg-images/webp/1.webp';
 import bgTwo from '../assets/bg-images/webp/2.webp';
@@ -16,7 +17,7 @@ import bgTen from '../assets/bg-images/webp/10.webp';
 import bgEleven from '../assets/bg-images/webp/11.webp';
 
 
-function Template() {
+function Template({ isSpotify }) {
   
   const bgImages = [bgOne, bgTwo, bgThree, bgFour, bgFive, bgSix, bgSeven, bgEight, bgNine, bgTen, bgEleven];
 
@@ -41,9 +42,14 @@ useEffect(() => {
         style={{backgroundImage: `url(${bgImage})`}}
       />
     ))}
+
     <Outlet />
     </>
   )
 }
+
+Template.propTypes = {
+  isSpotify: PropTypes.string.isRequired,
+};
 
 export default Template

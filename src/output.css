@@ -574,24 +574,24 @@ video {
   bottom: 0px;
 }
 
+.bottom-7 {
+  bottom: 1.75rem;
+}
+
 .left-0 {
   left: 0px;
 }
 
-.bottom-2 {
-  bottom: 0.5rem;
+.right-9 {
+  right: 2.25rem;
 }
 
-.bottom-3 {
-  bottom: 0.75rem;
+.top-0 {
+  top: 0px;
 }
 
-.bottom-5 {
-  bottom: 1.25rem;
-}
-
-.bottom-7 {
-  bottom: 1.75rem;
+.right-0 {
+  right: 0px;
 }
 
 .z-0 {
@@ -618,8 +618,16 @@ video {
   margin: 1.25rem;
 }
 
+.ml-4 {
+  margin-left: 1rem;
+}
+
 .ml-5 {
   margin-left: 1.25rem;
+}
+
+.mr-4 {
+  margin-right: 1rem;
 }
 
 .mt-4 {
@@ -628,14 +636,6 @@ video {
 
 .mt-5 {
   margin-top: 1.25rem;
-}
-
-.mr-4 {
-  margin-right: 1rem;
-}
-
-.ml-4 {
-  margin-left: 1rem;
 }
 
 .flex {
@@ -678,6 +678,10 @@ video {
   height: 100%;
 }
 
+.h-\[60vh\] {
+  height: 60vh;
+}
+
 .min-h-screen {
   min-height: 100vh;
 }
@@ -708,6 +712,34 @@ video {
 
 .w-full {
   width: 100%;
+}
+
+.w-\[30vw\] {
+  width: 30vw;
+}
+
+.w-\[20vw\] {
+  width: 20vw;
+}
+
+.w-\[25vw\] {
+  width: 25vw;
+}
+
+.w-\[10vw\] {
+  width: 10vw;
+}
+
+.w-\[15vw\] {
+  width: 15vw;
+}
+
+.w-\[70vw\] {
+  width: 70vw;
+}
+
+.w-\[60vh\] {
+  width: 60vh;
 }
 
 .scale-125 {
@@ -822,10 +854,6 @@ video {
   justify-content: center;
 }
 
-.justify-items-center {
-  justify-items: center;
-}
-
 .gap-1 {
   gap: 0.25rem;
 }
@@ -840,14 +868,6 @@ video {
 
 .gap-7 {
   gap: 1.75rem;
-}
-
-.gap-2 {
-  gap: 0.5rem;
-}
-
-.gap-4 {
-  gap: 1rem;
 }
 
 .overflow-hidden {
@@ -898,11 +918,6 @@ video {
 .bg-black {
   --tw-bg-opacity: 1;
   background-color: rgb(0 0 0 / var(--tw-bg-opacity));
-}
-
-.bg-orange-400 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(251 146 60 / var(--tw-bg-opacity));
 }
 
 .bg-red-800 {
@@ -1170,12 +1185,20 @@ video {
     top: 0px;
   }
 
-  .lg\:mr-0 {
-    margin-right: 0px;
+  .lg\:left-0 {
+    left: 0px;
+  }
+
+  .lg\:right-auto {
+    right: auto;
   }
 
   .lg\:ml-0 {
     margin-left: 0px;
+  }
+
+  .lg\:mr-0 {
+    margin-right: 0px;
   }
 
   .lg\:h-10 {
@@ -1218,8 +1241,8 @@ video {
     width: 50vh;
   }
 
-  .lg\:gap-0 {
-    gap: 0px;
+  .lg\:w-\[25vw\] {
+    width: 25vw;
   }
 
   .lg\:overflow-auto {
