@@ -11,7 +11,7 @@ import zodiacMessages from '../data/zodiacMessages.json';
 // AOS
 // https://www.npmjs.com/package/aos
 
-function Home({ Tasks, setTasks, Name, setName, Birthdate, setBirthdate, isModal, setIsModal, time, setTime, greetings, setGreetings, signText, setSignText}) {
+function Home({ Tasks, setTasks, Name, setName, Birthdate, setBirthdate, isModal, setIsModal, time, setTime, greetings, setGreetings, signText, setSignText, day, setDay}) {
   const [actionText, setActionText] = useState("S T A R T");
 
   const [isRunning, setIsRunning] = useState(false);
@@ -87,9 +87,13 @@ function Home({ Tasks, setTasks, Name, setName, Birthdate, setBirthdate, isModal
       const now = new Date();
       const hours = now.getHours().toString().padStart(2, '0');
       const minutes = now.getMinutes().toString().padStart(2, '0');
-      const seconds = now.getSeconds().toString().padStart(2, '0');
-      setTime(`${hours}:${minutes}:${seconds}`);
-      // setTime(`${hours}:${minutes}`);
+      // const seconds = now.getSeconds().toString().padStart(2, '0');
+      // setTime(`${hours}:${minutes}:${seconds}`);
+      setTime(`${hours}:${minutes}`);
+
+      const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+      const day = days[now.getDay()]; // Get the current day
+      setDay(day); // Update the day state
 
       if (hours < 12) {
         setGreetings('Good morning, ');
@@ -109,8 +113,11 @@ function Home({ Tasks, setTasks, Name, setName, Birthdate, setBirthdate, isModal
       <div>
         {!isModal && (
 
-          <div>
+          <div className="flex flex-col items-center justify-center">
 
+              <div className="w-[10vh] text-white sm:text-[25px] lg:text-[25px] text-[17px] font-bold flex flex-row justify-center items-center drop-shadow-lg z-50 select-none animate-fade-up-2s">
+                  {day}
+              </div>
 
               <div className="w-[50vw] text-white sm:text-[100px] text-[60px] flex flex-row justify-center items-center font-bold z-50 select-none drop-shadow-lg animate-fade-up-2s">
                   {time}
@@ -224,6 +231,8 @@ Home.propTypes = {
   setGreetings: PropTypes.func.isRequired,
   signText: PropTypes.string.isRequired,
   setSignText: PropTypes.func.isRequired,
+  day: PropTypes.string.isRequired,
+  setDay: PropTypes.func.isRequired,
 };
 
 export default Home
