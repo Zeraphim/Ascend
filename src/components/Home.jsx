@@ -1,10 +1,6 @@
 import { useState, useEffect } from "react"
 import PropTypes from 'prop-types';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faRedo } from '@fortawesome/free-solid-svg-icons';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
-
 import zodiacMessages from '../data/zodiacMessages.json';
 
 // TODO
@@ -12,28 +8,8 @@ import zodiacMessages from '../data/zodiacMessages.json';
 // https://www.npmjs.com/package/aos
 
 function Home({ Tasks, setTasks, Name, setName, Birthdate, setBirthdate, isModal, setIsModal, time, setTime, greetings, setGreetings, signText, setSignText, day, setDay}) {
-  const [actionText, setActionText] = useState("S T A R T");
-
-  const [isRunning, setIsRunning] = useState(false);
 
   const [modalGreetings, setModalGreetings] = useState("Greetings !!!");
-
-
-  const handleClick = () => {
-    if (actionText === "S T A R T") {
-      setActionText("P A U S E");
-      setIsRunning(true);
-    } else {
-      setActionText("S T A R T");
-      setIsRunning(false);
-    }
-  };
-
-  const handleReset = () => {
-    setTime([25, 0]);
-    setIsRunning(false);
-    setActionText("S T A R T");
-  }
 
   const handleNameChange = (event) => {
     setName(event.target.value);
@@ -127,7 +103,7 @@ function Home({ Tasks, setTasks, Name, setName, Birthdate, setBirthdate, isModal
               </div>
  
 
-              <div className="lg:absolute lg:bottom-0 lg:left-0 m-5 lg:h-[20vh] lg:w-[20vw] h-[20vh] w-[50vw] flex flex-row justify-center items-center text-white sm:text-[10px] text-[10px] lg:text-left text-justify font-light drop-shadow-lg z-50 select-none lg:overflow-auto whitespace-normal animate-fade-up-2s">
+              <div className="lg:absolute lg:bottom-0  m-10 lg:h-[20vh] lg:w-[20vw] h-[20vh] w-[50vw] flex flex-row justify-center items-center text-center text-white lg:text-[15px] text-[10px] font-light drop-shadow-2xl z-50 select-none lg:overflow-auto whitespace-normal animate-fade-up-2s">
                   {signText}
               </div>
 
@@ -141,7 +117,7 @@ function Home({ Tasks, setTasks, Name, setName, Birthdate, setBirthdate, isModal
               {Tasks.map((task, index) => (
                 <li 
                   key={index} 
-                  className="z-50 lg:h-[7vh] lg:w-[25vw] w-[50vw] h-[5vw] select-none text-white flex flex-row justify-center items-center backdrop-filter backdrop-blur-sm bg-opacity-55 rounded-xl overflow-hidden bg-teal-400 transition transform hover:scale-105 hover:bg-cyan-300 hover:backdrop-blur-sm hover:bg-opacity-55 animate-fade-down"
+                  className="z-50 lg:h-[7vh] lg:w-[15vw] w-[50vw] h-[5vw] select-none text-white flex flex-row justify-center items-center backdrop-filter backdrop-blur-3xl bg-opacity-15 rounded-xl overflow-hidden bg-teal-400 transition transform hover:scale-105 hover:bg-teal-400 hover:backdrop-blur-sm hover:bg-opacity-55 font-bold animate-fade-down"
                   onClick={() => {
                     const newTasks = Tasks.filter((_, taskIndex) => taskIndex !== index);
                     setTasks(newTasks);
@@ -164,7 +140,7 @@ function Home({ Tasks, setTasks, Name, setName, Birthdate, setBirthdate, isModal
             <div>
               <form onSubmit={handleSubmit} className="flex flex-col items-center gap-7 pb-6">
 
-                <div className="text-[20px] font-bold drop-shadow-lg animate-fade-up"> 
+                <div className="text-[20px] font-bold drop-shadow-lg animate-fade-up select-none"> 
                   {modalGreetings}
                 </div>
 

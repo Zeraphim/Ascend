@@ -8,7 +8,7 @@ import { faHome, faClock } from '@fortawesome/free-solid-svg-icons';
 
 function Navbar({ currentPath }) {
 
-  const [homeIconStyle, setHomeIconStyle] = useState("text-white");
+  const [homeIconStyle, setHomeIconStyle] = useState("text-teal-300");
   const [pomodoroIconStyle, setPomodoroIconStyle] = useState("text-white");
 
   function homeActiveIconStyle() {
