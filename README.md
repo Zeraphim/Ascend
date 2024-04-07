@@ -8,3 +8,14 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 # Ascend
 "# Ascend-Zeraphim" 
+
+# Setup
+
+## Step 1: Clone the repository
+`git clone https://github.com/Zeraphim/Ascend.git`
+
+## Step 1: Install the dependencies
+`npm install`
+
+## Step 2: Start a development environment
+`npm run dev`
