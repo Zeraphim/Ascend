@@ -1,3 +1,6 @@
+# Ascend
+Ascend features a clean and minimalist design, reminiscent of the popular Momentum app. Users are initially greeted with a real-time clock showing the current date and time along with inspirational quotes to inspire users throughout their day. Lastly, the Pomodoro page allows users to start a 25-minute Pomodoro timer for focused work sessions, there's also a ToDo list feature partnered by Spotify embed to play your favorite songs during pomodoro sessions.
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
